@@ -8,7 +8,7 @@
 
 [DomainSale.sol](./contracts/DomainSale.sol)
 
-## Report
+## Submission
 
 The way funds are transferred when the auction ends right now allows seller to set up a trap. If the previous owner of the name is a contract which throws in the fallback payable function, the auction can never be finished (because transfer propagates exceptions). This leads to the last bidder's funds being locked indefinitely and the name staying in the ownership of the DomainSale contract with the original resolver.
 If the previous owner contract has a condition in the payable function, the seller can even try to extort additional money from the bidder to allow the auction to finish. The only safe way to bid on names the way the contract is set up right now, is to examine what's on previous owner (and startRefferer) address before placing a bid, which seems very impractical.
